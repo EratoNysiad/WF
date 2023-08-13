@@ -42,7 +42,6 @@
         <script src="js/labels.js"></script>
         <script src="data/Route_1.js"></script>
         <script src="data/Route_2.js"></script>
-        <script src="data/Route_todo.js"></script>
         <script src="data/Route_bogen.js"></script>
         <!--<script src="data/Route_belgie.js"></script>-->
         <script>
@@ -152,19 +151,6 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Route_todo');
-        map.getPane('pane_Route_todo').style.zIndex = 400;
-        map.getPane('pane_Route_todo').style['mix-blend-mode'] = 'normal';
-        var layer_Route_todo = new L.geoJson(json_Route_todo, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Route_todo',
-            layerName: 'layer_Route_todo',
-            pane: 'pane_Route_todo',
-            style: style_Route_todo_0,
-        });
-        bounds_group.addLayer(layer_Route_todo);
-        map.addLayer(layer_Route_todo);
 		
         function pop_Route_bogen(feature, layer) {
             var popupContent = '<table>\
@@ -194,6 +180,7 @@
                 interactive: false,
             }
         }
+		
         map.createPane('pane_Route_bogen');
         map.getPane('pane_Route_bogen').style.zIndex = 400;
         map.getPane('pane_Route_bogen').style['mix-blend-mode'] = 'normal';
