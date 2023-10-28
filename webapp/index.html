@@ -43,6 +43,7 @@
         <script src="data/Route_1.js"></script>
         <script src="data/Route_2.js"></script>
         <script src="data/Route_bogen.js"></script>
+        <script src="data/Route_boten.js"></script>
         <!--<script src="data/Route_belgie.js"></script>-->
         <script>
         var map = L.map('map', {
@@ -81,6 +82,48 @@
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
+		
+        function pop_Route_boat(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Transport'] !== null ? autolinker.link(feature.properties['Transport'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Route_boat_0() {
+            return {
+                pane: 'pane_Route_boat',
+                opacity: 1,
+                color: 'rgba(3,163,242,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+		map.createPane('pane_Route_boat');
+        map.getPane('pane_Route_boat').style.zIndex = 401;
+        map.getPane('pane_Route_boat').style['mix-blend-mode'] = 'normal';
+        var layer_Route_boat = new L.geoJson(json_Route_boat, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Route_boat',
+            layerName: 'layer_Route_boat',
+            pane: 'pane_Route_boat',
+            style: style_Route_boat_0,
+        });
+        bounds_group.addLayer(layer_Route_boat);
+        map.addLayer(layer_Route_boat);
 
         function style_Route_1_0() {
             return {
@@ -122,35 +165,6 @@
         });
         bounds_group.addLayer(layer_Route_2);
         map.addLayer(layer_Route_2);
-		
-        function pop_Route_todo(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Transport'] !== null ? autolinker.link(feature.properties['Transport'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_Route_todo_0() {
-            return {
-                pane: 'pane_Route_todo',
-                opacity: 1,
-                color: 'rgba(243,3,3,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 3.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
 		
         function pop_Route_bogen(feature, layer) {
             var popupContent = '<table>\
