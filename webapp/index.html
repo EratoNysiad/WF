@@ -42,6 +42,7 @@
         <script src="js/labels.js"></script>
         <script src="data/Route_1.js"></script>
         <script src="data/Route_2.js"></script>
+        <script src="data/Route_museum.js"></script>
         <script src="data/Route_bogen.js"></script>
         <script src="data/Route_boten.js"></script>
         <!--<script src="data/Route_belgie.js"></script>-->
@@ -124,6 +125,33 @@
         });
         bounds_group.addLayer(layer_Route_boat);
         map.addLayer(layer_Route_boat);
+		
+        function style_Route_museum_0() {
+            return {
+                pane: 'pane_Route_museum',
+                opacity: 1,
+                color: 'rgba(142,3,3,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Route_museum');
+        map.getPane('pane_Route_museum').style.zIndex = 401;
+        map.getPane('pane_Route_museum').style['mix-blend-mode'] = 'normal';
+        var layer_Route_museum = new L.geoJson(json_Route_museum, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Route_museum',
+            layerName: 'layer_Route_museum',
+            pane: 'pane_Route_museum',
+            style: style_Route_museum_0,
+        });
+        bounds_group.addLayer(layer_Route_museum);
+        map.addLayer(layer_Route_museum);		
 
         function style_Route_1_0() {
             return {
